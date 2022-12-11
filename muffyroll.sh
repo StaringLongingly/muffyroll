@@ -1,0 +1,6 @@
+#!/bin/bash
+
+query=$(printf '%s' "$*" | tr ' ' '+' )
+resolution='+1080p'
+magnet=$(echo $(curl -s "https://nyaa.si/?f=0&c=1_2&q=$query$resolution&s=seeders&o=desc") | grep -Po "magnet:\?xt=urn:btih:[a-zA-Z0-9]*" | head -n 1)
+peerflix "$magnet"
