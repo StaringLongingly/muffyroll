@@ -5,7 +5,9 @@ resolution='+1080p'
 
 magnet=$(echo $(curl -s "https://nyaa.si/?f=0&c=1_2&q=$query$resolution&s=seeders&o=desc") | grep -Po "magnet:\?xt=urn:btih:[a-zA-Z0-9]*" | head -n 1)
 
-if [ "$magnet" == "" ]; then
+if [ "$query" == "" ]; then
+  echo "please provide a proper anime"
+elif [ "$magnet" == "" ]; then
   echo "torrent not found for $query"
   exit 1
 else
